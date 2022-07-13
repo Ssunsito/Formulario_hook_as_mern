@@ -1,0 +1,15 @@
+.App {
+  display: flex;
+  justify-content: center;
+}
+
+.input{
+  background-color: rgb(224, 219, 219);
+  border: 1px solid rgb(170, 168, 168);
+  padding: 10px;
+  border-radius: 5px;
+  color: grey;
+  height: 30px;
+  width: 400px;
+  margin: 5%;
+}
