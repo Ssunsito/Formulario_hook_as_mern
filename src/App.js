@@ -1,6 +1,7 @@
 import Form from './components/Form'
 import './App.css';
 import React from "react";
+import MyComponent from "./components/MyComponent";
 
 function App() {
   const [state, setState] = React.useState({
@@ -10,14 +11,17 @@ function App() {
       password: "",
       confirmPassword: "",
       edad: "",
-      hasbeenSubmitted: false,
   });
 
   return (
     
     <div className="App">
       <Form state={state} setState={setState} />
+      <div> 
+        <MyComponent movies={["Inception", "Interstellar", "Dunkirk", "Avatar", "Armageddon", "Efecto Mariposa"]} />
+      </div>
     </div>
+    
   );
 }
 
