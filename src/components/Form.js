@@ -6,6 +6,8 @@ const Form = (props) => {
     const [eTitle, setETitle] =  useState("");
     const [pTitle, setPTitle] =  useState("");
     const [cPTitle, setCpTitle] =  useState("");
+    const [edTitle, setEdTitle] =  useState("");
+    const [hasBeensubmitted, setHasBeenSubmitted] = useState(false);
 
     const handleFirstName = (e)=>{
         setState({...state, 'firstName': e.target.value});
@@ -50,8 +52,43 @@ const Form = (props) => {
         }
     }  
 
+    const handleConfirmEdad = (e)=>{
+        setState({...state, 'edad': e.target.value});
+        if (state.edad < 18){
+            setEdTitle('Debes ser mayor de edad!');
+        }else{
+            setEdTitle("");
+        }
+    }
+
+    const handleRegistrar = (e) => {
+        /*e.preventDefault();
+        if (state.firstName.length < 1 || state.lastName.length < 1 || state.email.length < 1 || 
+            state.password.length < 7 || state.password !== state.confirmPassword || state.edad < 18) {
+            alert("Please fill out all fields correctly!");
+        } else {
+            alert("Registration successful!");
+            console.log("First Name:", state.firstName);
+            console.log("Last Name:", state.lastName);
+            console.log("Email:", state.email);
+            console.log("Password:", state.password);
+            console.log("Edad:", state.edad);
+        }*/
+       e.preventDefault();
+       setHasBeenSubmitted(true);
+    }
+
+    const FormMessage = () => {     
+        if (hasBeensubmitted) {
+            return "¡Gracias por registrarse!";
+        }else {
+            return "¡Bienvenido! Por favor, regístrese.";
+        }
+    }
+
+
     return(
-        <form>
+        <form onSubmit={handleRegistrar}>
             <div className="input">
                 <label htmlFor="firstName">First Name: </label>
                 <input type="text" name="firstName" size={30} onChange={handleFirstName}/>
@@ -87,7 +124,15 @@ const Form = (props) => {
                     <p style={{color:'red'}}> {cPTitle}</p>
                 }
             </div>
-            <input type="submit" value="Register"/>
+            <div className="input">
+                <label htmlFor="edad">Edad: </label>
+                <input type="number" name="edad" size={3} onChange={handleConfirmEdad} onKeyDown={e => e.preventDefault()}/>
+                {
+                    <p style={{color:'red'}}> {edTitle}</p>
+                }
+            </div>
+            <h3 style={{color: 'green'}}>{FormMessage()}</h3>
+            <input type="submit" value="Register" />
         </form>
     );
 }
