@@ -17,7 +17,7 @@ function App() {
     
     <div className="App">
       <Form state={state} setState={setState} />
-      <div> 
+      <div style={{ justifyContent: "end", display: "flex", flexDirection: "column", alignItems: "end" }}> 
         <MyComponent movies={["Inception", "Interstellar", "Dunkirk", "Avatar", "Armageddon", "Efecto Mariposa"]} />
       </div>
     </div>
